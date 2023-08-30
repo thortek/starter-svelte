@@ -1,5 +1,5 @@
-<!-- <script lang='ts'>
-    import '@skeletonlabs/skeleton/styles/skeleton.css'
-</script> -->
+<script lang='ts'>
+   import '../app.postcss'
+</script>
 
 <slot />
