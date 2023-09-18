@@ -14,7 +14,7 @@
    <svelte:fragment slot="header">
       <AppBar>
          <svelte:fragment slot="lead">
-            <strong class="text-2xl">Thor Anderson</strong>
+            <strong class="text-xl">Thor Anderson</strong>
          </svelte:fragment>
          <svelte:fragment slot="trail">
             <a href="#" class="text-xl">Home</a>

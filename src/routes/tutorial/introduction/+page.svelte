@@ -10,10 +10,7 @@
 <p class="text-yellow-400 font-mono text-4xl ">Here is my sample Paragraph!</p>
 <p>Another paragraph</p>
 <Nested />
-```
 
 <!-- 		color: goldenrod;
 		font-family: 'Courier New', Courier, monospace;
 		font-size: 2rem; -->
-
-```

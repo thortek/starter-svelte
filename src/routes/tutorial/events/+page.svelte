@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Messenger from '$lib/components/Messenger.svelte';
+	//import Messenger from '$lib/components/Messenger.svelte';
+	import Outer from '$lib/components/Outer.svelte';
 	import { getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings } from '@skeletonlabs/skeleton';
 
@@ -34,4 +35,4 @@
 	<button class="btn variant-filled-primary" on:click={() => alert('clicked')}> Click me </button>
 </div>
 
-<Messenger on:foo={handleMessage} />
+<Outer on:click/>
