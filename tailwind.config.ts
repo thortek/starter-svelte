@@ -2,6 +2,7 @@ import { join } from 'path';
 import type { Config } from 'tailwindcss';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 import typography from '@tailwindcss/typography';
+import forms from '@tailwindcss/forms';
 
 export default {
 	// 2. Opt for dark mode to be handled via the class method
@@ -16,6 +17,7 @@ export default {
 	},
 	plugins: [
 		typography,
+		forms,
 		// 4. Append the Skeleton plugin (after other plugins)
 		skeleton({
 			themes: {

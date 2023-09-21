@@ -1,6 +1,6 @@
 <script lang="ts">
-	//import Messenger from '$lib/components/Messenger.svelte';
 	import Outer from '$lib/components/Outer.svelte';
+	import BigBlueButton from '$lib/components/BigBlueButton.svelte';
 	import { getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings } from '@skeletonlabs/skeleton';
 
@@ -11,7 +11,7 @@
 			type: 'alert',
 			// Data
 			title: 'Example Foo Alert',
-			body: 'This is an example modal. You can use it to display alerts, confirmations, or other messages.',
+			body: event.detail.text,
 		};
 		modalStore.trigger(modal);
 	}
@@ -26,13 +26,18 @@
 
 <div class="container h-11/12 flex flex-col gap-4 m-4">
 	<div
-		class="bg-slate-200 left-0 top-0 w-96 h-96 p-4"
+		class="bg-slate-700 left-0 top-0 w-96 h-96 p-4"
 		on:pointermove={(e) => (m = { x: e.clientX, y: e.clientY })}
 	>
 		<p>The pointer is at {m.x} x {m.y}</p>
 	</div>
 
-	<button class="btn variant-filled-primary" on:click={() => alert('clicked')}> Click me </button>
+	<button class="btn variant-filled-primary" on:click|once={() => alert('clicked')}> Click me once... and only once! </button>
 </div>
 
-<Outer on:click/>
+<div class="grid gap-4">
+<Outer on:foo={handleMessage}/>
+<p>This example dispatch's the 'foo' event which is forwarded through another component to be handled here.</p>
+<BigBlueButton on:click={handleMessage}/>
+<p>This big blue button demonstrates how to forward a DOM 'click' event to also be handled here.</p>
+</div>

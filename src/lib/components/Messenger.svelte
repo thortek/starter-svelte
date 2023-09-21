@@ -11,5 +11,5 @@
 </script>
 
 <button class="btn variant-filled" on:click={sayHello}>
-	Click to say hello
+	Click to dispatch 'foo' event
 </button>
