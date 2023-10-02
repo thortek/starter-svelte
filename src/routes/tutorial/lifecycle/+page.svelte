@@ -16,7 +16,7 @@
 
 	let text = `Select some text and hit the tab key to toggle uppercase`;
 
-	async function handleKeydown(this: any, event: { key: string; preventDefault: () => void; }) {
+	async function handleKeydown(this: any, event: { key: string; preventDefault: () => void }) {
 		if (event.key !== 'Tab') return;
 
 		event.preventDefault();
@@ -32,7 +32,6 @@
 		this.selectionStart = selectionStart;
 		this.selectionEnd = selectionEnd;
 	}
-	
 </script>
 
 <div class="flex flex-col items-center justify-center">
@@ -42,11 +41,9 @@
 	{:else}
 		<p>Loading...</p>
 	{/if}
-	<textarea class="textarea text-center mx-auto mt-8 w-96 h-32"
-	value={text}
-	on:keydown={handleKeydown}
-/>
+	<textarea
+		class="textarea text-center mx-auto mt-8 w-96 h-32"
+		value={text}
+		on:keydown={handleKeydown}
+	/>
 </div>
-
-
-

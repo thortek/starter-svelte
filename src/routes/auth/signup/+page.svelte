@@ -1,15 +1,20 @@
 <script lang="ts">
 
+import { localUser } from '$lib/stores/localUser'
+
 const credentials = {
     firstName: '',
     lastName: '',
-    email: '',
-    password: ''
+    email: ''
 }
+
+let password: string
 
 const handleSubmit = async () => {
     console.log('Thanks for submitting!')
     console.log(credentials)
+
+    $localUser = credentials
 }
 
 </script>
@@ -21,7 +26,7 @@ const handleSubmit = async () => {
         <input class="input" bind:value={credentials.firstName} required autocomplete="given-name" type="text" placeholder="First name" />
         <input class="input" bind:value={credentials.lastName} required autocomplete="family-name" type="text" placeholder="Last name" />
         <input class="input" bind:value={credentials.email} required autocomplete="email" type="email" placeholder="Email" />
-        <input class="input" bind:value={credentials.password} required autocomplete="new-password" type="password" placeholder="Password" />
+        <input class="input" bind:value={password} required autocomplete="new-password" type="password" placeholder="Password" />
         <input class="input" required type="password" placeholder="Confirm Password" />
         <button type="submit" class="btn variant-filled-primary">Signup</button>
     </form>
