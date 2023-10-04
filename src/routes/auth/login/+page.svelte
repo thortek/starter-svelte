@@ -9,9 +9,10 @@
 		password: ''
 	};
 
-    $: console.log($localUser)
+    //$: console.log($localUser)
 
 	const handleSubmit = async () => {
+		console.log($localUser)
 		const modal: ModalSettings = {
 			type: 'alert',
 			// Data

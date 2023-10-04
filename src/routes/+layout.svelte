@@ -4,6 +4,7 @@
    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
    import { initializeStores } from '@skeletonlabs/skeleton';
+   import ThemeMenu from '$lib/components/ThemeMenu.svelte';
 
    initializeStores();
 </script>
@@ -17,8 +18,7 @@
             <strong class="text-xl">Thor Anderson</strong>
          </svelte:fragment>
          <svelte:fragment slot="trail">
-            <a href="#" class="text-xl">Home</a>
-            <a href="#" class="text-xl">About</a>
+            <ThemeMenu />
          </svelte:fragment>
       </AppBar>
    </svelte:fragment>
