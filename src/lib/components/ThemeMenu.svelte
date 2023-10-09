@@ -4,7 +4,7 @@ import { theme } from '$lib/stores/theme';
 </script>
 
 <div class="flex">
-<p class="text-xl">Theme: {$theme}</p>
+
 <select class="select" bind:value={$theme}>
 	<option value="wintry">wintry</option>
 	<option value="skeleton">skeleton</option>
