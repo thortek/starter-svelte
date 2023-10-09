@@ -1,6 +1,7 @@
 <script lang="ts">
 
 import { localUser } from '$lib/stores/localUser'
+import { goto } from '$app/navigation'
 
 const credentials = {
     firstName: '',
@@ -12,9 +13,10 @@ let password: string
 
 const handleSubmit = async () => {
     console.log('Thanks for submitting!')
-    console.log(credentials)
-
+    
     $localUser = credentials
+    console.log($localUser)
+    goto('/auth/login')
 }
 
 </script>
