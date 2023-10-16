@@ -2,6 +2,7 @@
 	import { tweened, spring } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { ProgressBar } from '@skeletonlabs/skeleton';
+	import { el } from '@faker-js/faker';
 
 
 	let coords = spring({ x: 50, y: 50 }, {
@@ -18,7 +19,7 @@
 	});
 </script>
 
-<div class="flex flex-col items-center justify-center gap-48">
+<div class="flex flex-col gap-16 m-4">
 	<div>
 		<ProgressBar
 			class="m-2"
@@ -40,19 +41,8 @@
 
 		<button class="btn variant-filled" on:click={() => ($progress = 100)}> 100% </button>
 	</div>
-	<div>
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<svg class="absolute w-full h-full left-0 top-0"
-			on:mousemove={(e) => {
-				coords.set({ x: e.clientX, y: e.clientY });
-			}}
-			on:mousedown={() => size.set(30)}
-			on:mouseup={() => size.set(10)}
-		>
-			<circle fill="#22FF33" cx={$coords.x} cy={$coords.y} r={$size} />
-		</svg>
-
-		<div class="absolute top-32 right-16 w-48 select-none">
+	<div class="flex p-2">
+		<div class="w-48 select-none">
 			<label>
 				<h3>stiffness ({coords.stiffness})</h3>
 				<input bind:value={coords.stiffness} type="range" min="0.01" max="1" step="0.01" />
@@ -63,6 +53,23 @@
 				<input bind:value={coords.damping} type="range" min="0.01" max="1" step="0.01" />
 			</label>
 		</div>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<svg class="w-full h-128 border"
+			on:mousemove={(e) => {
+				const {left, top} = e.currentTarget.getBoundingClientRect();
+				coords.set({
+					x: e.clientX - left,
+					y: e.clientY - top
+				})
+				//coords.set({ x: e.clientX, y: e.clientY });
+			}}
+			on:mousedown={() => size.set(30)}
+			on:mouseup={() => size.set(10)}
+		>
+			<circle fill="#22FF33" cx={$coords.x} cy={$coords.y} r={$size} />
+		</svg>
+
+		
 	</div>
 </div>
 
