@@ -2,16 +2,22 @@
 	import { tweened, spring } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { ProgressBar } from '@skeletonlabs/skeleton';
-	import { el } from '@faker-js/faker';
+	import { fade, fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+	import { faker } from '@faker-js/faker'
 
+	let visible = true;
+	let stepList = [{id: faker.number.int(), text: faker.company.buzzPhrase()}]
 
-	let coords = spring({ x: 50, y: 50 }, {
-        stiffness: 0.1,
-        damping: 0.4
-    });
+	let coords = spring(
+		{ x: 50, y: 50 },
+		{
+			stiffness: 0.1,
+			damping: 0.4
+		}
+	);
 
-    let size = spring(10)
-
+	let size = spring(10);
 
 	const progress = tweened(0, {
 		duration: 400,
@@ -54,13 +60,14 @@
 			</label>
 		</div>
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<svg class="w-full h-128 border"
+		<svg
+			class="w-full h-128 border"
 			on:mousemove={(e) => {
-				const {left, top} = e.currentTarget.getBoundingClientRect();
+				const { left, top } = e.currentTarget.getBoundingClientRect();
 				coords.set({
 					x: e.clientX - left,
 					y: e.clientY - top
-				})
+				});
 				//coords.set({ x: e.clientX, y: e.clientY });
 			}}
 			on:mousedown={() => size.set(30)}
@@ -68,8 +75,31 @@
 		>
 			<circle fill="#22FF33" cx={$coords.x} cy={$coords.y} r={$size} />
 		</svg>
+	</div>
+	<div>
+		<label>
+			<input type="checkbox" bind:checked={visible} />
+			visible
+		</label>
+		<div class="flex gap-4">
+			{#if visible}
+				<img
+					src="https://placekitten.com/300/300"
+					alt="kitten"
+					transition:fly={{ x: -300, duration: 2000 }}
+				/>
+				<img src="https://placekitten.com/300/300" alt="kitten" transition:fade />
 
-		
+				<img src="https://placekitten.com/300/300" alt="kitten" in:fly={{ y:200, duration: 2000}} out:fade />
+			{/if}
+		</div>
+	</div>
+	<div>
+		<button class="btn variant-filled" on:click={() => stepList = [...stepList, {id: faker.number.int(), text: faker.company.buzzPhrase()}]}> Add Step </button>
+		<button class="btn variant-filled" on:click={() => stepList = stepList.slice(0, -1)}> Remove Step </button>
+		{#each stepList as step (step.id)}
+			<h3 class="bg-green-600 w-96 rounded-lg p-2" animate:flip="{{duration: 2000}}">{step.text}</h3>
+		{/each}
 	</div>
 </div>
 
