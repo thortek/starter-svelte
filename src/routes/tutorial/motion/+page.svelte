@@ -7,7 +7,26 @@
 	import { faker } from '@faker-js/faker'
 
 	let visible = true;
-	let stepList = [{id: faker.number.int(), text: faker.company.buzzPhrase()}]
+	let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+	const shuffle = () => {
+		numbers = numbers.sort(() => 0.5 - Math.random());
+	};
+
+	let imgSrc = '/clipart-heart.png'
+
+	const heartWidth = spring(100, {
+		stiffness: 0.1,
+		damping: 0.4
+	});
+
+/* 	const zoomIn = setInterval(() => {
+		heartWidth.set(200)
+	}, 300)
+
+	const zoomOut = setInterval(() => {
+		heartWidth.set(100)
+	}, 600) */
 
 	let coords = spring(
 		{ x: 50, y: 50 },
@@ -95,12 +114,19 @@
 		</div>
 	</div>
 	<div>
-		<button class="btn variant-filled" on:click={() => stepList = [...stepList, {id: faker.number.int(), text: faker.company.buzzPhrase()}]}> Add Step </button>
-		<button class="btn variant-filled" on:click={() => stepList = stepList.slice(0, -1)}> Remove Step </button>
-		{#each stepList as step (step.id)}
-			<h3 class="bg-green-600 w-96 rounded-lg p-2" animate:flip="{{duration: 2000}}">{step.text}</h3>
+		<button class="btn variant-filled" on:click={shuffle}>Shuffle</button>
+		<ul>
+		{#each numbers as number (number)}
+			<li class="bg-green-600 w-48 rounded-lg text-center my-1"
+			animate:flip={{ duration: 400 }}>
+				{number}
+			</li>
 		{/each}
+		</ul>
 	</div>
+	<div class="w-32 h-32">
+	<img src={imgSrc} alt="heart" width={$heartWidth} />
+</div>
 </div>
 
 <!-- <style>
