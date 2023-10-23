@@ -20,7 +20,7 @@
 		damping: 0.4
 	});
 
-/* 	const zoomIn = setInterval(() => {
+/* const zoomIn = setInterval(() => {
 		heartWidth.set(200)
 	}, 300)
 
