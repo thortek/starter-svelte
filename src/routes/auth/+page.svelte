@@ -8,5 +8,5 @@
     <button on:click={signOut}>Sign out</button>
   {:else}
     <p>Not signed in.</p>
-    <button on:click={() => signIn('google')}>Sign in</button>
+    <button on:click={() => signIn('github')}>Sign in</button>
   {/if}
