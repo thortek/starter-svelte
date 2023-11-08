@@ -4,7 +4,7 @@
 	import { signOut } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import { getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
-	import { goto } from '$app/navigation';
+	//import { goto } from '$app/navigation';
 
 	const modalStore = getModalStore();
 
@@ -17,7 +17,7 @@
 			response: (r: boolean) => {
 				if (r) {
 					signOut();
-					goto('/');
+					//goto('/');
 				}
 			},
 		};
