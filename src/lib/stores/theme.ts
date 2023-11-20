@@ -2,7 +2,7 @@ import {writable} from 'svelte/store';
 import { browser } from '$app/environment';
 
 const defaultValue = 'wintry';
-const initialValue = browser ? localStorage.getItem('theme') : defaultValue;
+const initialValue = browser ? localStorage.getItem('theme') && defaultValue : defaultValue;
 
 export const theme = writable(initialValue);
 
