@@ -5,6 +5,9 @@ export async function load({ params }) {
     console.log('lastName', lastName)
 
     return {
-        lastName
+        lastName,
+        title: faker.person.jobTitle(),
+        phone: faker.phone.number(),
+        email: faker.internet.email({lastName: `${lastName}`})
     }
 }
